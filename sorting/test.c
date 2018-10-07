@@ -72,7 +72,7 @@ void programa()
 								voltar = false;
 								break;
               }
-          	} while (back == false);
+          	} while (voltar == false);
 						break;
 
             default:
@@ -91,12 +91,12 @@ void programa()
       	break;
 
       	case 'N': case 'n':
-      	quit = true;
+      	sair = true;
       	break;
 
       	default:
       	printf("Invalid choice.");
-      	outer_loop = true;
+      	loop_externo = true;
       	break;
     	}
 		}
