@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <locale.h> //Talvez deletar
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
 void programa()
 {
 	char recomecar;
@@ -18,7 +18,7 @@ void programa()
   	int vetor[tamanho];
   	printf("Vetor com %d números. Pressione enter para gerar os valores.\n", tamanho);
   	system("pause");
-  	preenche(vetor);
+  	preenche(vetor, tamanho);
     printf("Vetor gerado, esse vetor será usado em todo e qualquer algoritmo de ordenação");
 		bool loop = true;
 		while (loop == true)
@@ -30,7 +30,7 @@ void programa()
       switch (opcao)
         {
           case 1:
-          sortall(vetor);
+          sortall(vetor, tamanho);
           loop = false;
           break;
 
@@ -44,23 +44,17 @@ void programa()
               switch (opcao_interna)
               {
                 case 1:
-								tempo = gettime;
-			          sort1(vetor);
-			          printf("%dns", gettime - tempo); //tempo = gettime - tempo;
+			          shellsort(vetor, tamanho);			          
                 loop = false;
                 break;
 
                 case 2:
-								tempo = gettime;
-			          sort2(vetor);
-			          printf("%dns", gettime - tempo);
+			          mergesort(vetor, tamanho);
                 loop = false;
                 break;
 
-                case 3:
-								tempo = gettime;
-			          sort3(vetor);
-			          printf("%dns", gettime - tempo);
+                case 3:								
+			          quicksort(vetor, tamanho);			          
                 loop = false;
                 break;
 
@@ -88,6 +82,7 @@ void programa()
     	switch (recomecar)
     	{
       	case 'Y': case 'y':
+				system("cls");
       	break;
 
       	case 'N': case 'n':
