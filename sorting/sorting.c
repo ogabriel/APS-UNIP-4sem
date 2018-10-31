@@ -2,62 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 #include <locale.h>
+int troca = 0;
+int comparacoes = 0;
 
 void sort1(int *vetor)
 {
-	/*
-  Ordenação por XSort.
-  Ordenando...
-  Ordenação concluída, tempo gasto: %dns, tempo_xsort
-  Trocas realizadas: %d; Comparações realizadas: %d, trocas_xsort, comparacoes_xsort
-  Pressione enter para ver o vetor ordenado
-  mostra(vetor);
-  */
+	// do sort
 }
 void sort2(int *vetor)
 {
-  /*
-  Ordenação por YSort.
-  Ordenando...
-  Ordenação concluída, tempo gasto: %dns, tempo_ysort
-  Trocas realizadas: %d; Comparações realizadas: %d, trocas_ysort, comparacoes_ysort
-  Pressione enter para ver o vetor ordenado
-  mostra(vetor);
-  */
+	// do sort
 }
 void sort3(int *vetor)
 {
-  /*
-  Ordenação por ZSort.
-  Ordenando...
-  Ordenação concluída, tempo gasto: %dns, tempo_zsort
-  Trocas realizadas: %d; Comparações realizadas: %d, trocas_zsort, comparacoes_zsort
-  Pressione enter para ver o vetor ordenado
-  mostra(vetor);
-  */
+	// do sort
 }
 void sortall(int *vetor)
 {
   sort1(vetor);
   sort2(vetor);
   sort3(vetor);
-  /*
-  Resultados finais(vetor com %d valores, tamanho):
-	XSort:
-  Tempo: %dns, tempo_xsort
-	Trocas %d, trocas_xsort
-	Comparações %d	comparacoes_xsort
-
-	YSort:
-  Tempo: %dns, tempo_ysort
-	Trocas %d, trocas_ysort
-	Comparações %d	comparacoes_ysort
-
-  ZSort:
-  Tempo: %dns, tempo_zsort
-	Trocas %d, trocas_zsort
-	Comparações %d	comparacoes_zsort
-  */
 }
 void preenche(int *vetor)
 {
@@ -76,4 +40,7 @@ void mostra(int *vetor)
 	{
 		printf("%d\t",vetor[i]);
 	}
+	printf("\nPressione enter para ver a quantidade de trocas realizadas.");
+	getch();
+	printf("\nNúmero de trocas: %d trocas\n", troca);
 }
