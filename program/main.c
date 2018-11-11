@@ -1,10 +1,27 @@
-#include "sorting.c"
+#include "sorts/all.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <locale.h>
 
-void programa()
+void unip_header();
+void first_menu();
+
+int main(int argc, char *argv[])
+{
+	setlocale(LC_ALL, "Portuguese");
+	unip_header();
+	first_menu();
+
+	return 0;
+}
+
+void unip_header(){
+	printf("\n _   _  _   _  _  ____\n| | | || \\ | ||	||    |\n| |_| ||  \\| || ||  __|\n|_____||_|\\__||_||_|");
+	printf("\nCIÊNCIA DA COMPUTAÇÃO\nAPS 2018 - 4ºSEMESTRE\n ");
+}
+
+void first_menu()
 {
 	char recomecar;
 	bool sair = false;
@@ -12,7 +29,7 @@ void programa()
 	{
 		printf("\n*** Programa de algoritmos de ordenação ***\n");
 		printf("Insira o tamanho do vetor a ser gerado: ");
-		int tamanho;
+		int tamanho = 0;
 		scanf("%d", &tamanho);
 		int vetor[tamanho];
 		printf("Vetor com %d números. Pressione enter para gerar os valores.\n", tamanho);
@@ -102,10 +119,5 @@ void programa()
 	printf("\nPrograma encerrado.");
 }
 
-int main(int argc, char *argv[])
-{
-	setlocale(LC_ALL, "Portuguese");
-	programa();
 
-	return 0;
-}
+
