@@ -51,5 +51,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Visual Studio folder
+# Visual Studio folders
 .vs/
+.vscode/
