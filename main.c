@@ -1,4 +1,4 @@
-#include "sorts/all.c"
+#include "./header_files/sorts.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

@@ -1,30 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
-#include <time.h>
-#include <locale.h>
-
-struct info_sort
-{
-    double tempo;
-    int trocas;
-    int comparacoes;
-};
-
-LARGE_INTEGER frequencia;
-LARGE_INTEGER tempo_comeco;
-LARGE_INTEGER tempo_fim;
-
-struct info_sort bubble;
-struct info_sort merge;
-struct info_sort quick;
-
-void troca(int *a, int *b)
-{
-    int aux = *a;
-    *a = *b;
-    *b = aux;
-}
+#include "../header_files/sorts.h"
 
 void bubblesort(int *vetor, int tamanho)
 {
@@ -33,11 +7,11 @@ void bubblesort(int *vetor, int tamanho)
 
         for (j = 0; j < tamanho - i - 1; j++)
         {
-            bubble.comparacoes++;
+            bubble_info.comparacoes++;
             if (vetor[j] > vetor[j + 1])
             {
                 troca(&vetor[j], &vetor[j + 1]);
-                bubble.trocas++;
+                bubble_info.trocas++;
             }
         }
 }
@@ -45,8 +19,8 @@ void bubblesort(int *vetor, int tamanho)
 void fundir_vetor(int *vetor, int inicio, int meio, int fim)
 {
     int i, j, k;
-    int metade1 = meio - inicio + 1;
-    int metade2 = fim - meio;
+    const int metade1 = meio - inicio + 1;
+    const int metade2 = fim - meio;
 
     int L[metade1], R[metade2];
 
@@ -60,7 +34,7 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
     k = inicio;
     while (i < metade1 && j < metade2)
     {
-        merge.comparacoes++;
+        merge_info.comparacoes++;
         if (L[i] <= R[j])
         {
             vetor[k] = L[i];
@@ -70,7 +44,7 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
         {
             vetor[k] = R[j];
             j++;
-            merge.trocas++;
+            merge_info.trocas++;
         }
         k++;
     }
@@ -106,16 +80,16 @@ void mergesort(int *vetor, int inicio, int fim)
 int particao(int *vetor, int inicio, int fim)
 {
     troca(&vetor[inicio + (rand() % (fim - inicio + 1))], &vetor[fim]);
-    quick.trocas++; // pivô aleatório colocado na última posição
+    quick_info.trocas++; // pivô aleatório colocado na última posição
     int indice = (inicio - 1);
 
     for (int j = inicio; j <= fim; j++)
     {
-        quick.comparacoes++;
+        quick_info.comparacoes++;
         if (vetor[j] <= vetor[fim])
         {
             troca(&vetor[++indice], &vetor[j]);
-            quick.trocas++;
+            quick_info.trocas++;
         }
     }
     return indice;
@@ -133,40 +107,19 @@ void quicksort(int *vetor, int low, int high)
     }
 }
 
-void preenche(int *vetor, int tamanho)
-{
-    srand(time(NULL));
-    int i;
-    for (i = 0; i < tamanho; i++)
-    {
-        vetor[i] = rand();
-        printf("%d\t", vetor[i]);
-    }
-}
-
-void mostra(int *vetor, int tamanho)
-{
-    printf("\nVetor ordenado:\n");
-    int i;
-    for (i = 0; i < tamanho; i++)
-    {
-        printf("%d\t", vetor[i]);
-    }
-}
-
 void bubble_result(int *vetor, int tamanho)
 {
-    bubble.trocas = 0;
-    bubble.comparacoes = 0;
+    bubble_info.trocas = 0;
+    bubble_info.comparacoes = 0;
     printf("Ordenação por Bubblesort.");
     printf("\nOrdenando...");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
     bubblesort(vetor, tamanho);
     QueryPerformanceCounter(&tempo_fim);
-    bubble.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
-    bubble.tempo *= 1000000000;
-    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", bubble.tempo, bubble.trocas, bubble.comparacoes);
+    bubble_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
+    bubble_info.tempo *= 1000000000;
+    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
     mostra(vetor, tamanho);
@@ -174,17 +127,17 @@ void bubble_result(int *vetor, int tamanho)
 
 void merge_result(int *vetor, int tamanho)
 {
-    merge.trocas = 0;
-    merge.comparacoes = 0;
+    merge_info.trocas = 0;
+    merge_info.comparacoes = 0;
     printf("\nOrdenação por Merge sort.");
     printf("\nOrdenando...");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
     mergesort(vetor, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
-    merge.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
-    merge.tempo *= 1000000000;
-    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", merge.tempo, merge.trocas, merge.comparacoes);
+    merge_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
+    merge_info.tempo *= 1000000000;
+    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
     mostra(vetor, tamanho);
@@ -192,17 +145,17 @@ void merge_result(int *vetor, int tamanho)
 
 void quick_result(int *vetor, int tamanho)
 {
-    quick.trocas = 0;
-    quick.comparacoes = 0;
+    quick_info.trocas = 0;
+    quick_info.comparacoes = 0;
     printf("\nOrdenação por Quicksort.");
     printf("\nOrdenando...");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
     quicksort(vetor, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
-    quick.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
-    quick.tempo *= 1000000000;
-    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", quick.tempo, quick.trocas, quick.comparacoes);
+    quick_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
+    quick_info.tempo *= 1000000000;
+    printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
     mostra(vetor, tamanho);
@@ -214,7 +167,7 @@ void sortall(int *vetor, int tamanho)
     merge_result(vetor, tamanho);
     quick_result(vetor, tamanho);
     printf("\nResultados finais (vetor com %d valores):\n", tamanho);
-    printf("Bubblesort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", bubble.tempo, bubble.trocas, bubble.comparacoes);
-    printf("Mergesort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", merge.tempo, merge.trocas, merge.comparacoes);
-    printf("Quicksort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", quick.tempo, quick.trocas, quick.comparacoes);
+    printf("Bubblesort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
+    printf("Mergesort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
+    printf("Quicksort:\nTempo: %fns\nTrocas: %d\nComparações: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
 }
