@@ -122,7 +122,7 @@ void bubble_result(int *vetor, int tamanho)
     printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
-    mostra(vetor, tamanho);
+    mostra_vetor(vetor, tamanho);
 }
 
 void merge_result(int *vetor, int tamanho)
@@ -140,7 +140,7 @@ void merge_result(int *vetor, int tamanho)
     printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
-    mostra(vetor, tamanho);
+    mostra_vetor(vetor, tamanho);
 }
 
 void quick_result(int *vetor, int tamanho)
@@ -158,7 +158,7 @@ void quick_result(int *vetor, int tamanho)
     printf("\nOrdenação concluída, tempo gasto: %fns\nTrocas realizadas: %d; Comparações realizadas: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
-    mostra(vetor, tamanho);
+    mostra_vetor(vetor, tamanho);
 }
 
 void sortall(int *vetor, int tamanho)

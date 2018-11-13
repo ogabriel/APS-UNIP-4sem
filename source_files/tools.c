@@ -7,7 +7,7 @@ void troca(int *a, int *b)
     *b = aux;
 }
 
-void mostra(int *vetor, int tamanho)
+void mostra_vetor(int *vetor, int tamanho)
 {
     printf("\nVetor ordenado:\n");
     int i;
