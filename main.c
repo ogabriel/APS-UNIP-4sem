@@ -41,83 +41,82 @@ void first_menu()
 		{
 			int opcao;
 			printf("\nOpções: ");
-			printf("\n1 - Ordenar o método com todos os algoritmos;  2 - Escolher um algoritmo individualmente \n");
+			printf("\n1 - Ordenar o método com todos os algoritmos\n2 - Escolher um algoritmo individualmente \n");
 			scanf("%d", &opcao);
 			switch (opcao)
 			{
-			case 1:
-				sortall(vetor, tamanho);
-				loop = false;
-				break;
+				case 1:
+					sortall(vetor, tamanho);
+					loop = false;
+					break;
 
-			case 2:
-			{
-				bool voltar = true;
-				do
+				case 2:
 				{
-					int opcao_interna;
-					printf("\n Opções de sort: ");
-					printf("\n1 - Bubblesort;  2 - Mergesort;  3 - Quicksort;  4 - Voltar \n");
-					scanf("%d", &opcao_interna);
-					switch (opcao_interna)
+					bool voltar = true;
+					do
 					{
-					case 1:
-						bubble_result(vetor, tamanho);
-						loop = false;
+						int opcao_interna;
+						printf("\n Opções de sort: ");
+						printf("\n1 - Bubblesort \n2 - Mergesort \n3 - Quicksort \n4 - Voltar \n");
+						scanf("%d", &opcao_interna);
+						switch (opcao_interna)
+						{
+						case 1:
+							bubble_result(vetor, tamanho);
+							loop = false;
+							break;
+
+						case 2:
+							merge_result(vetor, tamanho);
+							loop = false;
+							break;
+
+						case 3:
+							quick_result(vetor, tamanho);
+							loop = false;
+							break;
+
+						case 4:
+							break;
+
+						default:
+							printf("Escolha inválida.\n");
+							voltar = false;
+							break;
+						}
+					} while (voltar == false);
+					break;
+				}
+				default:
+					printf("Escolha inválida.\n");
+					break;
+				}
+			}
+			bool loop_externo = true;
+			while (loop_externo == true)
+			{
+				printf("Deseja recomeçar gerando um novo vetor? S/N\n");
+				scanf("%s", &recomecar);
+				switch (recomecar)
+				{
+					case 'S':
+					case 's':
+						system("cls");
+						loop_externo = false;
 						break;
 
-					case 2:
-						merge_result(vetor, tamanho);
-						loop = false;
-						break;
-
-					case 3:
-						quick_result(vetor, tamanho);
-						loop = false;
-						break;
-
-					case 4:
+					case 'N':
+					case 'n':
+						sair = true;
 						break;
 
 					default:
-						printf("Escolha inválida.");
-						voltar = false;
+						printf("Escolha inválida.\n");
+						loop_externo = true;
 						break;
-					}
-				} while (voltar == false);
-				break;
-			}
-			default:
-				printf("Escolha inválida.\n");
-				break;
+				}
 			}
 		}
-		bool loop_externo = true;
-		while (loop_externo == true)
-		{
-			printf("Deseja recomeçar gerando um novo vetor? Y/N\n");
-			scanf("%s", &recomecar);
-			switch (recomecar)
-			{
-			case 'Y':
-			case 'y':
-				system("cls");
-				break;
-
-			case 'N':
-			case 'n':
-				sair = true;
-				break;
-
-			default:
-				printf("Escolha inválida.");
-				loop_externo = true;
-				break;
-			}
-		}
-	}
-	printf("\nPrograma encerrado.");
+	printf("\n***Programa encerrado***.");
+	void unip_header()
 }
-
-
-
