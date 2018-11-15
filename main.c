@@ -118,5 +118,5 @@ void first_menu()
 			}
 		}
 	printf("\n***Programa encerrado***.");
-	void unip_header()
+	void unip_header();
 }
