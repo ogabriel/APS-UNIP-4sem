@@ -30,3 +30,6 @@ void bubble_result(int *vetor, int tamanho);
 void merge_result(int *vetor, int tamanho);
 void quick_result(int *vetor, int tamanho);
 void sortall(int *vetor, int tamanho);
+
+void header_sorts(char *nome);
+void footer_sorts(struct info_sort sort_info);
