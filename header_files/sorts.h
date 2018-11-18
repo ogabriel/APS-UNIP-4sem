@@ -24,8 +24,8 @@ void bubblesort(int *vetor, int tamanho);
 void fundir_vetor(int *vetor, int inicio, int meio, int fim);
 
 void mergesort(int *vetor, int inicio, int fim);
-//int particao(int *vetor, int inicio, int fim);
-//void quicksort(int *vetor, int low, int high);
+int particao(int *vetor, int inicio, int fim);
+void quicksort(int *vetor, int low, int high);
 
 void bubble_result(int *vetor, int tamanho);
 void merge_result(int *vetor, int tamanho);
