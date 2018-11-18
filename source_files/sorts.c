@@ -78,84 +78,35 @@ void mergesort(int *vetor, int inicio, int fim)
     }
 }
 
-// int particao(int *vetor, int inicio, int fim)
-// {
-//     int pivo = vetor[fim];
-//     int indice = (inicio - 1);
-
-//     for (int j = inicio; j <= fim; j++)
-//     {
-//         if (vetor[j] <= pivo)
-//         {
-//             indice++;
-//             troca(&vetor[indice], &vetor[j]);
-//         }
-//     }
-//     troca(&vetor[inicio + 1], &vetor[fim]);
-//     return (indice + 1);
-// }
-
-// void quicksort(int *vetor, int low, int high)
-// {
-//     if (low < high)
-//     {
-//         int indice_particao = particao(vetor, low, high);
-
-//         quicksort(vetor, low, indice_particao - 1);
-//         quicksort(vetor, indice_particao + 1, high);
-//     }
-// }
-
-void swap(int* a, int* b)
+int particao(int *vetor, int inicio, int fim)
 {
-	int t = *a;
-	*a = *b;
-	*b = t;
+    int pivo = vetor[fim];
+    int indice = (inicio - 1);
+
+    for (int j = inicio; j <= fim - 1; j++)
+    {
+        quick_info.comparacoes++;
+        if (vetor[j] <= pivo)
+        {
+            indice++;
+            troca(&vetor[indice], &vetor[j]);
+            quick_info.trocas++;
+        }
+    }
+    troca(&vetor[inicio + 1], &vetor[fim]);
+    return (indice + 1);
 }
 
-/* This function takes last element as pivot, places
-the pivot element at its correct position in sorted
-	array, and places all smaller (smaller than pivot)
-to left of pivot and all greater elements to right
-of pivot */
-int partition (int arr[], int low, int high)
+void quicksort(int *vetor, int low, int high)
 {
-	int pivot = arr[high]; // pivot
-	int i = (low - 1); // Index of smaller element
+    if (low < high)
+    {
+        int indice_particao = particao(vetor, low, high);
 
-	for (int j = low; j <= high- 1; j++)
-	{
-		// If current element is smaller than or
-		// equal to pivot
-		if (arr[j] <= pivot)
-		{
-			i++; // increment index of smaller element
-			swap(&arr[i], &arr[j]);
-		}
-	}
-	swap(&arr[i + 1], &arr[high]);
-	return (i + 1);
+        quicksort(vetor, low, indice_particao - 1);
+        quicksort(vetor, indice_particao + 1, high);
+    }
 }
-
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-	if (low < high)
-	{
-		/* pi is partitioning index, arr[p] is now
-		at right place */
-		int pi = partition(arr, low, high);
-
-		// Separately sort elements before
-		// partition and after partition
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
-}
-
 
 void bubble_result(int *vetor, int tamanho)
 {
@@ -171,7 +122,7 @@ void bubble_result(int *vetor, int tamanho)
     bubble_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     bubble_info.tempo *= 1000;
     footer_sorts(bubble_info);
-    mostra_vetor(vetor, tamanho);
+    mostra_vetor(vetor_bubble, tamanho);
 }
 
 void merge_result(int *vetor, int tamanho)
@@ -188,7 +139,7 @@ void merge_result(int *vetor, int tamanho)
     merge_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     merge_info.tempo *= 1000;
     footer_sorts(merge_info);
-    mostra_vetor(vetor, tamanho);
+    mostra_vetor(vetor_merge, tamanho);
 }
 
 void quick_result(int *vetor, int tamanho)
@@ -200,12 +151,12 @@ void quick_result(int *vetor, int tamanho)
     header_sorts("QuickSort");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
-    quickSort(vetor_quick, 0, tamanho - 1);
+    quicksort(vetor_quick, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
     quick_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     quick_info.tempo *= 1000;
     footer_sorts(quick_info);
-    mostra_vetor(vetor, tamanho);
+    mostra_vetor(vetor_quick, tamanho);
 }
 
 void sortall(int *vetor, int tamanho)
