@@ -159,12 +159,14 @@ void quickSort(int arr[], int low, int high)
 
 void bubble_result(int *vetor, int tamanho)
 {
+    int vetor_bubble[tamanho];
+    memcpy(vetor_bubble, vetor, sizeof vetor_bubble);
     bubble_info.trocas = 0;
     bubble_info.comparacoes = 0;
     header_sorts("BubbleSort");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
-    bubblesort(vetor, tamanho);
+    bubblesort(vetor_bubble, tamanho);
     QueryPerformanceCounter(&tempo_fim);
     bubble_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     bubble_info.tempo *= 1000;
@@ -174,12 +176,14 @@ void bubble_result(int *vetor, int tamanho)
 
 void merge_result(int *vetor, int tamanho)
 {
+    int vetor_merge[tamanho];
+    memcpy(vetor_merge, vetor, sizeof vetor_merge);
     merge_info.trocas = 0;
     merge_info.comparacoes = 0;
     header_sorts("MergeSort");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
-    mergesort(vetor, 0, tamanho - 1);
+    mergesort(vetor_merge, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
     merge_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     merge_info.tempo *= 1000;
@@ -189,12 +193,14 @@ void merge_result(int *vetor, int tamanho)
 
 void quick_result(int *vetor, int tamanho)
 {
+    int vetor_quick[tamanho];
+    memcpy(vetor_quick, vetor, sizeof vetor_quick);
     quick_info.trocas = 0;
     quick_info.comparacoes = 0;
     header_sorts("QuickSort");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
-    quickSort(vetor, 0, tamanho - 1);
+    quickSort(vetor_quick, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
     quick_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     quick_info.tempo *= 1000;
@@ -208,15 +214,15 @@ void sortall(int *vetor, int tamanho)
     int vetor_merge[tamanho];
     int vetor_quick[tamanho];
     memcpy(vetor_bubble, vetor, sizeof vetor_bubble);
-    memcpy(vetor_merge, vetor, sizeof vetor_bubble);
-    memcpy(vetor_quick, vetor, sizeof vetor_bubble);
+    memcpy(vetor_merge, vetor, sizeof vetor_merge);
+    memcpy(vetor_quick, vetor, sizeof vetor_quick);
     bubble_result(vetor_bubble, tamanho);
     merge_result(vetor_merge, tamanho);
     quick_result(vetor_quick, tamanho);
     printf("\nResultados finais (vetor com %d valores):\n", tamanho);
-    printf("Bubblesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
-    printf("Mergesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
-    printf("Quicksort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
+    printf("\nBubblesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
+    printf("\nMergesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
+    printf("\nQuicksort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
 }
 
 void header_sorts(char *nome) {
