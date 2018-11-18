@@ -161,15 +161,9 @@ void quick_result(int *vetor, int tamanho)
 
 void sortall(int *vetor, int tamanho)
 {
-    int vetor_bubble[tamanho];
-    int vetor_merge[tamanho];
-    int vetor_quick[tamanho];
-    memcpy(vetor_bubble, vetor, sizeof vetor_bubble);
-    memcpy(vetor_merge, vetor, sizeof vetor_merge);
-    memcpy(vetor_quick, vetor, sizeof vetor_quick);
-    bubble_result(vetor_bubble, tamanho);
-    merge_result(vetor_merge, tamanho);
-    quick_result(vetor_quick, tamanho);
+    bubble_result(vetor, tamanho);
+    merge_result(vetor, tamanho);
+    quick_result(vetor, tamanho);
     printf("\nResultados finais (vetor com %d valores):\n", tamanho);
     printf("\nBubblesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
     printf("\nMergesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
