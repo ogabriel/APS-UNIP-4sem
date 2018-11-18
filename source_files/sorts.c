@@ -19,8 +19,8 @@ void bubblesort(int *vetor, int tamanho)
 void fundir_vetor(int *vetor, int inicio, int meio, int fim)
 {
     int i, j, k;
-    const int metade1 = meio - inicio + 1;
-    const int metade2 = fim - meio;
+    int metade1 = meio - inicio + 1;
+    int metade2 = fim - meio;
 
     int L[metade1], R[metade2];
 
