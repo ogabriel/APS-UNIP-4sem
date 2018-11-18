@@ -54,3 +54,6 @@ dkms.conf
 # Visual Studio folders
 .vs/
 .vscode/
+
+# a file that appears for no reason
+null
