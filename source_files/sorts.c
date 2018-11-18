@@ -78,35 +78,84 @@ void mergesort(int *vetor, int inicio, int fim)
     }
 }
 
-int particao(int *vetor, int inicio, int fim)
-{
-    troca(&vetor[inicio + (rand() % (fim - inicio + 1))], &vetor[fim]);
-    quick_info.trocas++; // pivô aleatório colocado na última posição
-    int indice = (inicio - 1);
+// int particao(int *vetor, int inicio, int fim)
+// {
+//     int pivo = vetor[fim];
+//     int indice = (inicio - 1);
 
-    for (int j = inicio; j <= fim; j++)
-    {
-        quick_info.comparacoes++;
-        if (vetor[j] <= vetor[fim])
-        {
-            troca(&vetor[++indice], &vetor[j]);
-            quick_info.trocas++;
-        }
-    }
-    return indice;
+//     for (int j = inicio; j <= fim; j++)
+//     {
+//         if (vetor[j] <= pivo)
+//         {
+//             indice++;
+//             troca(&vetor[indice], &vetor[j]);
+//         }
+//     }
+//     troca(&vetor[inicio + 1], &vetor[fim]);
+//     return (indice + 1);
+// }
+
+// void quicksort(int *vetor, int low, int high)
+// {
+//     if (low < high)
+//     {
+//         int indice_particao = particao(vetor, low, high);
+
+//         quicksort(vetor, low, indice_particao - 1);
+//         quicksort(vetor, indice_particao + 1, high);
+//     }
+// }
+
+void swap(int* a, int* b)
+{
+	int t = *a;
+	*a = *b;
+	*b = t;
 }
 
-void quicksort(int *vetor, int low, int high)
+/* This function takes last element as pivot, places
+the pivot element at its correct position in sorted
+	array, and places all smaller (smaller than pivot)
+to left of pivot and all greater elements to right
+of pivot */
+int partition (int arr[], int low, int high)
 {
-    srand(time(NULL));
-    if (low < high)
-    {
-        int indice_particao = particao(vetor, low, high);
+	int pivot = arr[high]; // pivot
+	int i = (low - 1); // Index of smaller element
 
-        quicksort(vetor, low, indice_particao - 1);
-        quicksort(vetor, indice_particao + 1, high);
-    }
+	for (int j = low; j <= high- 1; j++)
+	{
+		// If current element is smaller than or
+		// equal to pivot
+		if (arr[j] <= pivot)
+		{
+			i++; // increment index of smaller element
+			swap(&arr[i], &arr[j]);
+		}
+	}
+	swap(&arr[i + 1], &arr[high]);
+	return (i + 1);
 }
+
+/* The main function that implements QuickSort
+arr[] --> Array to be sorted,
+low --> Starting index,
+high --> Ending index */
+void quickSort(int arr[], int low, int high)
+{
+	if (low < high)
+	{
+		/* pi is partitioning index, arr[p] is now
+		at right place */
+		int pi = partition(arr, low, high);
+
+		// Separately sort elements before
+		// partition and after partition
+		quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+	}
+}
+
 
 void bubble_result(int *vetor, int tamanho)
 {
@@ -145,7 +194,7 @@ void quick_result(int *vetor, int tamanho)
     header_sorts("QuickSort");
     QueryPerformanceFrequency(&frequencia);
     QueryPerformanceCounter(&tempo_comeco);
-    quicksort(vetor, 0, tamanho - 1);
+    quickSort(vetor, 0, tamanho - 1);
     QueryPerformanceCounter(&tempo_fim);
     quick_info.tempo = (double)(tempo_fim.QuadPart - tempo_comeco.QuadPart) / frequencia.QuadPart;
     quick_info.tempo *= 1000;
@@ -155,9 +204,15 @@ void quick_result(int *vetor, int tamanho)
 
 void sortall(int *vetor, int tamanho)
 {
-    bubble_result(vetor, tamanho);
-    merge_result(vetor, tamanho);
-    quick_result(vetor, tamanho);
+    int vetor_bubble[tamanho];
+    int vetor_merge[tamanho];
+    int vetor_quick[tamanho];
+    memcpy(vetor_bubble, vetor, sizeof vetor_bubble);
+    memcpy(vetor_merge, vetor, sizeof vetor_bubble);
+    memcpy(vetor_quick, vetor, sizeof vetor_bubble);
+    bubble_result(vetor_bubble, tamanho);
+    merge_result(vetor_merge, tamanho);
+    quick_result(vetor_quick, tamanho);
     printf("\nResultados finais (vetor com %d valores):\n", tamanho);
     printf("Bubblesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
     printf("Mergesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
