@@ -165,9 +165,9 @@ void sortall(int *vetor, int tamanho)
     merge_result(vetor, tamanho);
     quick_result(vetor, tamanho);
     printf("\nResultados finais (vetor com %d valores):\n", tamanho);
-    printf("\nBubblesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
-    printf("\nMergesort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
-    printf("\nQuicksort:\nTempo: %fms\nTrocas: %d\nComparações: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
+    printf("\nBubblesort:\nTempo: %fms\nTrocas: %lu\nComparações: %d\n", bubble_info.tempo, bubble_info.trocas, bubble_info.comparacoes);
+    printf("\nMergesort:\nTempo: %fms\nTrocas: %lu\nComparações: %d\n", merge_info.tempo, merge_info.trocas, merge_info.comparacoes);
+    printf("\nQuicksort:\nTempo: %fms\nTrocas: %lu\nComparações: %d\n", quick_info.tempo, quick_info.trocas, quick_info.comparacoes);
 }
 
 void header_sorts(char *nome) {
@@ -176,7 +176,7 @@ void header_sorts(char *nome) {
 }
 
 void footer_sorts(struct info_sort sort_info) {
-    printf("\nOrdenação concluída, tempo gasto: %fms\nTrocas realizadas: %d; Comparações realizadas: %d\n", sort_info.tempo, sort_info.trocas, sort_info.comparacoes);
+    printf("\nOrdenação concluída, tempo gasto: %fms\nTrocas realizadas: %lu; Comparações realizadas: %d\n", sort_info.tempo, sort_info.trocas, sort_info.comparacoes);
     printf("Pressione enter para ver o vetor ordenado.");
     system("pause>null");
 }
