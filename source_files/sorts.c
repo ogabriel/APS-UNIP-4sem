@@ -82,8 +82,9 @@ int particao(int *vetor, int inicio, int fim)
 {
     int pivo = vetor[fim];
     int indice = (inicio - 1);
+    int j;
 
-    for (int j = inicio; j <= fim - 1; j++)
+    for (j = inicio; j <= fim - 1; j++)
     {
         quick_info.comparacoes++;
         if (vetor[j] <= pivo)
