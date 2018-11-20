@@ -8,7 +8,7 @@
 struct info_sort
 {
     double tempo;
-    int trocas;
+    unsigned long int trocas;
     int comparacoes;
 };
 
