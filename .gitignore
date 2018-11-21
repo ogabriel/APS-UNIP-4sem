@@ -57,3 +57,7 @@ dkms.conf
 
 # a file that appears for no reason
 null
+
+# devc++
+Makefile.win
+*.layout
