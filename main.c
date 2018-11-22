@@ -27,17 +27,14 @@ void menu()
 	while (sair == false)
 	{
 		printf("\n*** Programa de algoritmos de ordenação ***\n");
-		printf("Insira o tamanho do vetor a ser gerado: ");
 
 		int tamanho = 0;
+		printf("Insira o tamanho do vetor a ser gerado: ");
 		scanf("%d", &tamanho);
-		int vetor[tamanho];
 
-		printf("Vetor com %d números. Pressione enter para gerar os valores.\n", tamanho);
+		printf("O tamanho de %d do vetor vai ser usado em todas as ordenações", tamanho);
+		printf("***Caso queira trocar o tamanho, aperte 3 no menu principal");
 		system("pause>null");
-
-		preenche(vetor, tamanho);
-		printf("\nVetor gerado, esse vetor será usado em todo e qualquer algoritmo de ordenação até o fim desta execução.");
 
 		bool first_loop = true;
 		while (first_loop == true)
@@ -49,7 +46,7 @@ void menu()
 			switch (opcao)
 			{
 				case 1:
-					sortall(vetor, tamanho);
+					sortall(tamanho);
 					break;
 				case 2:
 				{
@@ -63,13 +60,13 @@ void menu()
 						switch (opcao_interna)
 						{
 						case 1:
-							bubble_result(vetor, tamanho);
+							bubble_result(tamanho);
 							break;
 						case 2:
-							merge_result(vetor, tamanho);
+							merge_result(tamanho);
 							break;
 						case 3:
-							quick_result(vetor, tamanho);
+							quick_result(tamanho);
 							break;
 						case 4:
 							voltar = true;
