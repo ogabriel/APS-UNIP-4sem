@@ -20,17 +20,17 @@ struct info_sort bubble_info;
 struct info_sort merge_info;
 struct info_sort quick_info;
 
-void bubblesort(int *vetor, int tamanho);
+void bubblesort(int tamanho);
 void fundir_vetor(int *vetor, int inicio, int meio, int fim);
 
-void mergesort(int *vetor, int inicio, int fim);
+void mergesort(int inicio, int fim);
 int particao(int *vetor, int inicio, int fim);
-void quicksort(int *vetor, int low, int high);
+void quicksort(int low, int high);
 
-void bubble_result(int *vetor, int tamanho);
-void merge_result(int *vetor, int tamanho);
-void quick_result(int *vetor, int tamanho);
-void sortall(int *vetor, int tamanho);
+void bubble_result(int tamanho);
+void merge_result(int tamanho);
+void quick_result(int tamanho);
+void sortall(int tamanho);
 
 void header_sorts(char *nome);
 void footer_sorts(struct info_sort sort_info);
