@@ -1,6 +1,6 @@
 #include "../header_files/sorts.h"
 
-void bubblesort(int *vetor, int tamanho)
+void bubblesort(int tamanho)
 {
     int i, j;
     for (i = 0; i < tamanho - 1; i++)
@@ -65,7 +65,7 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
     }
 }
 
-void mergesort(int *vetor, int inicio, int fim)
+void mergesort(int inicio, int fim)
 {
     if (inicio < fim)
     {
@@ -98,7 +98,7 @@ int particao(int *vetor, int inicio, int fim)
     return (indice + 1);
 }
 
-void quicksort(int *vetor, int low, int high)
+void quicksort(int low, int high)
 {
     if (low < high)
     {
@@ -109,7 +109,7 @@ void quicksort(int *vetor, int low, int high)
     }
 }
 
-void bubble_result(int *vetor, int tamanho)
+void bubble_result(int tamanho)
 {
     int vetor_bubble[tamanho];
     memcpy(vetor_bubble, vetor, sizeof vetor_bubble);
@@ -126,7 +126,7 @@ void bubble_result(int *vetor, int tamanho)
     mostra_vetor(vetor_bubble, tamanho);
 }
 
-void merge_result(int *vetor, int tamanho)
+void merge_result(int tamanho)
 {
     int vetor_merge[tamanho];
     memcpy(vetor_merge, vetor, sizeof vetor_merge);
@@ -143,7 +143,7 @@ void merge_result(int *vetor, int tamanho)
     mostra_vetor(vetor_merge, tamanho);
 }
 
-void quick_result(int *vetor, int tamanho)
+void quick_result(int tamanho)
 {
     int vetor_quick[tamanho];
     memcpy(vetor_quick, vetor, sizeof vetor_quick);
@@ -160,7 +160,7 @@ void quick_result(int *vetor, int tamanho)
     mostra_vetor(vetor_quick, tamanho);
 }
 
-void sortall(int *vetor, int tamanho)
+void sortall(int tamanho)
 {
     bubble_result(vetor, tamanho);
     merge_result(vetor, tamanho);
