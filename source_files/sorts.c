@@ -1,6 +1,6 @@
 #include "../header_files/sorts.h"
 
-void bubblesort(int tamanho)
+void bubblesort(int *vetor, int tamanho)
 {
     int i, j;
     for (i = 0; i < tamanho - 1; i++)
@@ -65,7 +65,7 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
     }
 }
 
-void mergesort(int inicio, int fim)
+void mergesort(int *vetor, int inicio, int fim)
 {
     if (inicio < fim)
     {
@@ -98,7 +98,7 @@ int particao(int *vetor, int inicio, int fim)
     return (indice + 1);
 }
 
-void quicksort(int low, int high)
+void quicksort(int *vetor, int low, int high)
 {
     if (low < high)
     {
