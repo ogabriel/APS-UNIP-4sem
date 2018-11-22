@@ -40,7 +40,7 @@ void menu()
 		while (first_loop == true)
 		{
 			int opcao;
-			printf("\nOpções: ");
+			printf("\n\nOpções: ");
 			printf("\n1 - Ordenar o método com todos os algoritmos\n2 - Escolher um algoritmo individualmente \n3 - Recomeçar/Fechar\n");
 			scanf("%d", &opcao);
 			switch (opcao)
