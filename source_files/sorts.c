@@ -45,7 +45,6 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
         {
             vetor[k] = R[j];
             j++;
-            merge_info.trocas++;
         }
         k++;
     }
