@@ -39,7 +39,6 @@ void fundir_vetor(int *vetor, int inicio, int meio, int fim)
         {
             vetor[k] = L[i];
             i++;
-            merge_info.trocas++;
         }
         else
         {
